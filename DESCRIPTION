@@ -1,16 +1,18 @@
 Package: scatterwithoutlier
-Title: What the Package Does (One Line, Title Case)
+Title: Create scatterplot for two quantitative variables with labeled outliers
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Tianyi",
+           family = "Zheng",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "tianyi.zheng@ubc.ca")
+Description: This function takes a dataset(as a list, and dataframes/tibbles are lists) of two quantitative variables and fits a single linear regression model from them, then it displays a scatterplot with fitted regression line. Also, it displays any influential points as red color based on user defined criteria (cut-off for cook’s distance).
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Suggests: 
+    testthat
+Imports: 
+    magrittr
