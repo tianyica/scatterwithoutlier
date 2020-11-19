@@ -1,0 +1,37 @@
+---
+title: "scatterwithoutlier"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{scatterwithoutlier}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(scatterwithoutlier)
+```
+
+Here, we provide some examples on how to use scatterwithoutlier and with different inputs.
+```{r }
+scatterwithoutlier(gapminder::gapminder %>%
+     dplyr::select(lifeExp,pop))
+```
+
+
+```{r }
+scatterwithoutlier(gapminder::gapminder %>%
+     dplyr::select(pop,lifeExp),xy=FALSE,cooksd=0.05,verbose = TRUE,outputcount = TRUE)
+```
+
+
+```{r }
+scatterwithoutlier(gapminder::gapminder %>%
+     dplyr::select(lifeExp,gdpPercap),cooksd = 0.05)
+```

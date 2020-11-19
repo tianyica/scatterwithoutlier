@@ -34,12 +34,12 @@ Create scatterplot for two quantitative variables with labeled outliers
 }
 \examples{
 
-scatterwithoutlier(gapminder \%>\%
-select(lifeExp,pop))
+scatterwithoutlier(gapminder::gapminder \%>\%
+dplyr::select(lifeExp,pop))
 
-scatterwithoutlier(gapminder \%>\%
-select(pop,lifeExp),xy=FALSE,cooksd=0.05,verbose = TRUE,outputcount = TRUE)
+scatterwithoutlier(gapminder::gapminder \%>\%
+dplyr::select(pop,lifeExp),xy=FALSE,cooksd=0.05,verbose = TRUE,outputcount = TRUE)
 
-scatterwithoutlier(gapminder \%>\%
-select(lifeExp,gdpPercap),cooksd = 0.05)
+scatterwithoutlier(gapminder::gapminder \%>\%
+dplyr::select(lifeExp,gdpPercap),cooksd = 0.05)
 }

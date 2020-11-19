@@ -1,0 +1,89 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# scatterwithoutlier
+
+<!-- badges: start -->
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
+
+The goal of scatterwithoutlier is to create scatterplot for two quantitative variables with labeled outliers. This function takes a dataset(as a list, and dataframes/tibbles are lists) of two quantitative variables and fits a single linear regression model from them, then it displays a scatterplot with fitted regression line. Also, it displays any influential points as red color based on user defined criteria (cut-off for cook’s distance).
+
+
+## Development Process
+
+usethis or devtools functions applied:
+
+  - create_package("scatterwithoutlier") and use_git() applied to generate the local package.
+  - use_r("scatterwithoutlier") generated scatterwithoutlier.R in the R folder.
+  - use_testthat() generated the tests folder and associated files.
+  - use_test("scatterwithoutlier") generated test-scatterwithoutlier.R in tests folder.
+  - use_package("dplyr") generated the dependecy on package "dplyr".
+  - use_pipe() generated the dependecy on package "magrittr".
+  - use_package("gapminder") generated the dependecy on package "gapminder".
+  - use_package("stats") generated the dependecy on package "stats".
+  - use_readme_rmd() generated README.Rmd.
+  - build_readme() generated README.md from README.Rmd.
+  - use_vignette("scatterwithoutlier") generated vignettes.
+  - build_vignettes() built the vignettes.
+  - use_mit_license("Tianyi Zheng") generated LICENSE.md.
+  - use_code_of_conduct() generated CODE_OF_CONDUCT.md.
+  - usethis::use_pkgdown() and pkgdown::build_site() generated the package website.
+
+Manual works:
+
+  - manually created a project on Github website, and pushed the local package into the repo.
+  - manually implemented scatterwithoutlier.R and test-scatterwithoutlier.R based on Assignment 1.
+  - manually filled in information for Readme, and vignettes.
+  - manually created and filled in information for NEWS.md
+
+
+
+## Installation
+
+`scatterwithoutlier` is not on CRAN yet, so the best way to install it is:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("tianyica/scatterwithoutlier")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(scatterwithoutlier)
+## basic example code
+```
+
+What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
+```{r }
+scatterwithoutlier(gapminder::gapminder %>%
+     dplyr::select(lifeExp,pop))
+```
+
+```{r }
+scatterwithoutlier(gapminder::gapminder %>%
+     dplyr::select(pop,lifeExp),xy=FALSE,cooksd=0.05,verbose = TRUE,outputcount = TRUE)
+```
+
+```{r }
+scatterwithoutlier(gapminder::gapminder %>%
+     dplyr::select(lifeExp,gdpPercap),cooksd = 0.05)
+```
+

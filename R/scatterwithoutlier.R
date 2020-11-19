@@ -12,17 +12,16 @@
 #'
 #' @examples
 #'
-#' scatterwithoutlier(gapminder %>%
-#' select(lifeExp,pop))
+#' scatterwithoutlier(gapminder::gapminder %>%
+#' dplyr::select(lifeExp,pop))
 #'
-#' scatterwithoutlier(gapminder %>%
-#' select(pop,lifeExp),xy=FALSE,cooksd=0.05,verbose = TRUE,outputcount = TRUE)
+#' scatterwithoutlier(gapminder::gapminder %>%
+#' dplyr::select(pop,lifeExp),xy=FALSE,cooksd=0.05,verbose = TRUE,outputcount = TRUE)
 #'
-#' scatterwithoutlier(gapminder %>%
-#' select(lifeExp,gdpPercap),cooksd = 0.05)
+#' scatterwithoutlier(gapminder::gapminder %>%
+#' dplyr::select(lifeExp,gdpPercap),cooksd = 0.05)
 
 scatterwithoutlier<-function(data, xy=TRUE, cooksd=0.5, outputcount=FALSE, verbose=FALSE,...){
-  library(tidyverse)
   if(typeof(data)!="list"){
     stop('The function expect input data as list\n',
          'but the input is: ', typeof(data)[1])
@@ -71,12 +70,12 @@ scatterwithoutlier<-function(data, xy=TRUE, cooksd=0.5, outputcount=FALSE, verbo
     cat("We have",Infobnum,"influential observations","at",cooksd,"cook's distance threshold")
   }
   data %>%
-    mutate(Infob=cooks.distance(model)>cooksd) %>%
-    ggplot(aes(x,y))+
-    geom_point(aes(color=Infob))+
-    geom_smooth(method=lm, se=FALSE)+
-    scale_color_manual(values=c("Black", "Red"))+
-    theme_bw()+
-    labs(x=xname,y=yname)+
-    theme(legend.position = "none")
+    dplyr::mutate(Infob=cooks.distance(model)>cooksd) %>%
+    ggplot2::ggplot(ggplot2::aes(x,y))+
+    ggplot2::geom_point(ggplot2::aes(color=Infob))+
+    ggplot2::geom_smooth(method=lm, se=FALSE)+
+    ggplot2::scale_color_manual(values=c("Black", "Red"))+
+    ggplot2::theme_bw()+
+    ggplot2::labs(x=xname,y=yname)+
+    ggplot2::theme(legend.position = "none")
 }
