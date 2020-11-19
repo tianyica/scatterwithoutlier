@@ -19,6 +19,9 @@ any influential points as red color based on user defined criteria
 
 ## Development Process
 
+Overall, this package was developed using the modern functions usethis()
+and devtools(), with some manual edits. Specifically:
+
 usethis or devtools functions applied:
 
   - create\_package(“scatterwithoutlier”) and use\_git() applied to
@@ -49,7 +52,11 @@ Manual works:
   - manually implemented scatterwithoutlier.R and
     test-scatterwithoutlier.R based on Assignment 1.
   - manually filled in information for Readme, and vignettes.
-  - manually created and filled in information for NEWS.md
+  - manually created and filled in information for NEWS.md.
+  - manually added a badge.
+
+Also, tests are developed to validate the function is outputing a ggplot
+object, and raising an error upon unexpected inputs.
 
 ## Installation
 
@@ -63,15 +70,13 @@ devtools::install_github("tianyica/scatterwithoutlier")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(scatterwithoutlier)
-## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+The following example plots the relationship between life expectancy (as
+independent variable) and population (as dependent variable) from the
+gapminder dataset on the default settings.
 
 ``` r
 scatterwithoutlier(gapminder::gapminder %>%
@@ -81,6 +86,12 @@ scatterwithoutlier(gapminder::gapminder %>%
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
+The following example plots the relationship between life expectancy (as
+independent variable) and population (as dependent variable) from the
+gapminder dataset on the threshold of 0.05 on cook’s distance, and
+outputing the message on the count of influential observations and the
+process of the function.
+
 ``` r
 scatterwithoutlier(gapminder::gapminder %>%
      dplyr::select(pop,lifeExp),xy=FALSE,cooksd=0.05,verbose = TRUE,outputcount = TRUE)
@@ -89,6 +100,10 @@ scatterwithoutlier(gapminder::gapminder %>%
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+The following example plots the relationship between life expectancy (as
+independent variable) and GDP per capita (as dependent variable) from
+the gapminder dataset on the threshold of 0.05 on cook’s distance.
 
 ``` r
 scatterwithoutlier(gapminder::gapminder %>%
